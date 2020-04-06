@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test SSE Events</title>
+
+</head>
+<body>
+<div id="messages"></div>
+<script type="text/javascript">
+    const eventSource = new EventSource('http://localhost:8080/notifications', {withCredentials: true});
+    eventSource.onmessage = (message) => {
+        document.getElementById('messages').innerHTML += `${message.data} <br/>`
+    };
+    eventSource.onopen = () => {
+        console.log('Connection established.')
+    };
+
+</script>
+</body>
+</html>
